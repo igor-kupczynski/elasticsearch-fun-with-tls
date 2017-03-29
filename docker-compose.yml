@@ -1,0 +1,47 @@
+version: '2'
+services:
+  elasticsearch-1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
+    container_name: elasticsearch-1
+    mem_limit: 1g
+    volumes:
+      - "./data-1:/usr/share/elasticsearch/data"
+      - "./elasticsearch-1.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+      - "./certificates/ca/ca.crt:/usr/share/elasticsearch/config/x-pack/tls/ca/ca.crt"
+      - "./certificates/node-0001:/usr/share/elasticsearch/config/x-pack/tls/node-0001"
+    networks:
+      - internal-tls
+    ports:
+      - 9200:9200
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  elasticsearch-2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
+    container_name: elasticsearch-2
+    mem_limit: 1g
+    volumes:
+      - "./data-2:/usr/share/elasticsearch/data"
+      - "./elasticsearch-2.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+      - "./certificates/ca/ca.crt:/usr/share/elasticsearch/config/x-pack/tls/ca/ca.crt"
+      - "./certificates/node-0002:/usr/share/elasticsearch/config/x-pack/tls/node-0002"
+    networks:
+      - internal-tls
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  # This is an impostor without a cert:
+  elasticsearch-3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
+    container_name: elasticsearch-3
+    mem_limit: 1g
+    volumes:
+      - "./data-3:/usr/share/elasticsearch/data"
+      - "./elasticsearch-3.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+    networks:
+      - internal-tls
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+
+networks:
+  internal-tls:
+    driver: bridge
