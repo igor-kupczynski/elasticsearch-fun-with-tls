@@ -10,7 +10,8 @@ services:
       - "./certificates/ca/ca.crt:/usr/share/elasticsearch/config/x-pack/tls/ca/ca.crt"
       - "./certificates/node-0001:/usr/share/elasticsearch/config/x-pack/tls/node-0001"
     networks:
-      - internal-tls
+      internal-tls:
+        ipv4_address: 172.18.10.2
     ports:
       - 9200:9200
     environment:
@@ -25,7 +26,8 @@ services:
       - "./certificates/ca/ca.crt:/usr/share/elasticsearch/config/x-pack/tls/ca/ca.crt"
       - "./certificates/node-0002:/usr/share/elasticsearch/config/x-pack/tls/node-0002"
     networks:
-      - internal-tls
+      internal-tls:
+        ipv4_address: 172.18.10.3
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
   # This is an impostor without a cert:
@@ -37,7 +39,8 @@ services:
       - "./data-3:/usr/share/elasticsearch/data"
       - "./elasticsearch-3.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
     networks:
-      - internal-tls
+      internal-tls:
+        ipv4_address: 172.18.10.4
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
@@ -45,3 +48,8 @@ services:
 networks:
   internal-tls:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.18.10.0/24
+        gateway: 172.18.10.1

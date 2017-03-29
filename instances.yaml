@@ -1,3 +1,11 @@
 instances:
-  - name: "node-0001" 
+  - name: "node-0001"
+    dns:
+      - "elasticsearch-1"
+    ip:
+      - "172.18.10.2"
   - name: "node-0002"
+    dns:
+      - "elasticsearch-2"
+    ip:
+      - "172.18.10.3"

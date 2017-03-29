@@ -2,8 +2,9 @@ cluster.name: "docker-cluster"
 node.name: "node-0002"
 network.host: 0.0.0.0
 http.host: 0.0.0.0
+transport.host: 172.18.10.3
 
-discovery.zen.ping.unicast.hosts: elasticsearch-1
+discovery.zen.ping.unicast.hosts: 172.18.10.2
 discovery.zen.minimum_master_nodes: 1
 
 xpack.ssl.key: /usr/share/elasticsearch/config/x-pack/tls/node-0002/node-0002.key
