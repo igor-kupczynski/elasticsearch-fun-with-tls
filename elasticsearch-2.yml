@@ -9,6 +9,8 @@ discovery.zen.minimum_master_nodes: 1
 xpack.ssl.key: /usr/share/elasticsearch/config/x-pack/tls/node-0002/node-0002.key
 xpack.ssl.certificate: /usr/share/elasticsearch/config/x-pack/tls/node-0002/node-0002.crt
 xpack.ssl.certificate_authorities: ["/usr/share/elasticsearch/config/x-pack/tls/ca/ca.crt" ]
+xpack.ssl.verification_mode: certificate
+
 
 xpack.security.transport.ssl.enabled: true
 xpack.security.http.ssl.enabled: true

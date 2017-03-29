@@ -1,0 +1,7 @@
+cluster.name: "docker-cluster"
+node.name: "node-0003"
+network.host: 0.0.0.0
+http.host: 0.0.0.0
+
+discovery.zen.ping.unicast.hosts: elasticsearch-1
+discovery.zen.minimum_master_nodes: 1

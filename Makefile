@@ -66,3 +66,13 @@ es2-run:
 		-v `pwd`/certificates/ca/ca.crt:$(es_dir)/config/x-pack/tls/ca/ca.crt \
 		-v `pwd`/certificates/node-0002:$(es_dir)/config/x-pack/tls/node-0002 \
 		'docker.elastic.co/elasticsearch/elasticsearch:5.3.0'
+
+.PHONY: es3-run
+es3-run:
+	@ docker run -it --name elasticsearch-3 --rm \
+		--memory=1g \
+		-e "ES_JAVA_OPTS=-Xms512m -Xmx512m" \
+		--network $(network) \
+		-v `pwd`/data-3:$(es_dir)/data \
+		-v `pwd`/elasticsearch-3.yml:$(es_dir)/config/elasticsearch.yml \
+		'docker.elastic.co/elasticsearch/elasticsearch:5.3.0'
