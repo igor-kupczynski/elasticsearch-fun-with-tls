@@ -1,9 +1,12 @@
+# Data to generate the certificates for the proper nodes
 instances:
   - name: "node-0001"
     dns:
       - "elasticsearch-1"
     ip:
-      - "172.18.10.2"
+      - "172.18.10.2"   # Even if I set up the hosts via (docker) dns
+                        # name it still wants the ip in the
+                        # certificate
   - name: "node-0002"
     dns:
       - "elasticsearch-2"

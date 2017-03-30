@@ -1,0 +1,8 @@
+# Certificate signed by an "alien" CA for node-0003
+# Using this cert it should not be able to join the cluster
+instances:
+  - name: "node-0003"
+    dns:
+      - "elasticsearch-3"
+    ip:
+      - "172.18.10.4"
