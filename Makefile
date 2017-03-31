@@ -17,7 +17,8 @@ certs-generate: alien.yaml instances.yaml
 		-w $(es_dir) \
 		'docker.elastic.co/elasticsearch/elasticsearch:$(es_version)' \
 		bin/x-pack/certgen -in instances.yaml -out $(es_dir)/config/x-pack/certificates/bundle.zip
-	@ unzip certificates/bundle.zip -d certificates
+	@ unzip -o certificates/bundle.zip -d certificates
+	@ rm certificates/bundle.zip
 # Generate an "alien" certificate for node-0003
 	@ mkdir -p alien-certificates
 	@ docker run -it --rm \
@@ -26,8 +27,8 @@ certs-generate: alien.yaml instances.yaml
 		-w $(es_dir) \
 		'docker.elastic.co/elasticsearch/elasticsearch:$(es_version)' \
 		bin/x-pack/certgen -in alien.yaml -out $(es_dir)/config/x-pack/alien-certificates/bundle.zip
-	@ unzip alien-certificates/bundle.zip -d alien-certificates
-
+	@ unzip -o alien-certificates/bundle.zip -d alien-certificates
+	@ rm alien-certificates/bundle.zip
 
 .PHONY: certs-clean
 certs-clean:

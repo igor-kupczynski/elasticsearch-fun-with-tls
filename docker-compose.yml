@@ -4,7 +4,7 @@ services:
   elasticsearch-1:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
     container_name: elasticsearch-1
-    mem_limit: 1g
+    mem_limit: 2g
     volumes:
       - "./data-1:/usr/share/elasticsearch/data"
       - "./elasticsearch-1.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -16,12 +16,12 @@ services:
     ports:
       - 9200:9200
     environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
 
   elasticsearch-2:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
     container_name: elasticsearch-2
-    mem_limit: 1g
+    mem_limit: 2g
     volumes:
       - "./data-2:/usr/share/elasticsearch/data"
       - "./elasticsearch-2.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -31,13 +31,13 @@ services:
       internal-tls:
         ipv4_address: 172.18.10.3
     environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
 
   # This is an alien with a cert from a different CA
   elasticsearch-3:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
     container_name: elasticsearch-3
-    mem_limit: 1g
+    mem_limit: 2g
     volumes:
       - "./data-3:/usr/share/elasticsearch/data"
       - "./elasticsearch-3.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -47,7 +47,7 @@ services:
       internal-tls:
         ipv4_address: 172.18.10.4
     environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
 
 networks:
   internal-tls:
