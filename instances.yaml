@@ -3,6 +3,7 @@ instances:
   - name: "node-0001"
     dns:
       - "elasticsearch-1"
+      - "localhost"
     ip:
       - "172.18.10.2"   # Even if I set up the hosts via (docker) dns
                         # name it still wants the ip in the
